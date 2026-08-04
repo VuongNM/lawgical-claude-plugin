@@ -1,0 +1,21 @@
+Copyright (c) 2026 Vương Minh Nguyễn. All rights reserved.
+
+This repository is published publicly so that Claude users can inspect the
+plugin before installing it, and to satisfy the public-repository requirement
+for submission to Anthropic's plugin directory.
+
+Publication is not a grant of licence. No permission is given to copy, modify,
+distribute, sublicense, or create derivative works from any part of this
+repository, including the skill documents under skills/, except as follows:
+
+  1. You may install and use this plugin with Claude for its intended purpose.
+  2. You may fork this repository where GitHub's Terms of Service require that
+     ability for the platform to function.
+
+The Lawgical name and logo are trademarks of the copyright holder.
+
+Use of the Lawgical service reached by this plugin is additionally governed by
+the Terms of Service at https://lawgical.vn/terms and the Privacy Policy at
+https://lawgical.vn/privacy.
+
+For any other permission, contact vuongnguyen710@gmail.com.

@@ -1,0 +1,21 @@
+{
+  "name": "lawgical",
+  "description": "Tra cứu pháp luật Việt Nam có trích dẫn đến từng Điều, Khoản — kèm các skill soạn hợp đồng, phân tích hợp đồng và đối chiếu tuân thủ. Vietnamese legal research with citations down to the exact article, plus contract drafting, contract review and compliance-checklist skills.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Vương Minh Nguyễn",
+    "email": "vuongnguyen710@gmail.com"
+  },
+  "homepage": "https://lawgical.vn",
+  "repository": "https://github.com/VuongNM/lawgical-claude-plugin",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "legal",
+    "vietnam",
+    "vietnamese",
+    "law",
+    "compliance",
+    "contracts",
+    "legal-research"
+  ]
+}

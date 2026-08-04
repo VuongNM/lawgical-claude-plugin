@@ -1,0 +1,15 @@
+{
+  "name": "lawgical",
+  "description": "Công cụ tra cứu pháp luật Việt Nam cho Claude — Vietnamese legal research tools for Claude.",
+  "owner": {
+    "name": "Lawgical",
+    "email": "vuongnguyen710@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "lawgical",
+      "source": "./",
+      "description": "Vietnamese legal research with citations down to the exact Điều and Khoản, plus contract drafting, contract review and compliance-checklist skills."
+    }
+  ]
+}
