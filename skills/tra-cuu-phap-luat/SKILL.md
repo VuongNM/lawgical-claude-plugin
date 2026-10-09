@@ -36,7 +36,7 @@ Trả phí: **không giới hạn**. Hạn mức đặt lại vào **00:00 giờ
 
 | Công cụ | Tính lượt? | Dùng để |
 |---|---|---|
-| `get_account_status()` | **Không — luôn miễn phí** | Xem gói, số lượt đã dùng/còn lại hôm nay, giờ đặt lại hạn mức, ngày gia hạn/hết hạn; với thành viên văn phòng: admin có cần cấp account hay gia hạn gói không |
+| `get_account_status()` | **Không — luôn miễn phí** | Xem gói, số lượt đã dùng/còn lại hôm nay, giờ đặt lại hạn mức, ngày gia hạn/hết hạn; với thành viên tổ chức: admin có cần cấp account hay gia hạn gói không |
 | `search_legal_docs(keywords)` | 1 lượt | **Bước đầu tiên.** Tìm theo từ khóa trên toàn kho |
 | `check_compliance(question)` | 1 lượt | Cùng cơ chế tìm, nhưng nhận đầu vào dạng câu hỏi. Trả về trích đoạn thô để **bạn** tự phân tích — không trả về kết luận |
 | `get_laws(tinh_trang, keyword, limit, offset)` | 1 lượt | Duyệt riêng **Luật** (do Quốc hội ban hành), không gồm Nghị định/Thông tư hướng dẫn |
