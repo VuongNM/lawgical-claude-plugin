@@ -88,15 +88,13 @@ không giới hạn. Tra cứu không ra kết quả không bị tính lượt.
 
 ## Nguồn dữ liệu / Data source
 
-Văn bản pháp luật lấy từ các cổng thông tin chính thức của nhà nước (Bộ Tư pháp).
-Lawgical không sở hữu văn bản gốc.
+Văn bản pháp luật lấy từ các cổng thông tin chính thức của nhà nước.
 
 ## Miễn trừ trách nhiệm / Disclaimer
 
-Lawgical là công cụ **hỗ trợ tra cứu**, không phải dịch vụ tư vấn pháp lý. Nội
-dung do AI tạo ra có thể chứa sai sót hoặc chưa cập nhật kịp thời điểm hiệu lực
-của văn bản. Luôn đối chiếu với văn bản gốc và tham vấn luật sư có chứng chỉ hành
-nghề trước khi ra quyết định pháp lý.
+Lawgical là công cụ tra cứu, không phải dịch vụ tư vấn pháp lý. AI có thể trả lời
+sai, nên trước khi quyết định việc gì quan trọng, bạn nên đối chiếu văn bản gốc và
+hỏi luật sư.
 
 ## Liên kết / Links
 
