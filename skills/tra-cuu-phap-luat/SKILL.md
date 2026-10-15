@@ -11,8 +11,8 @@ description: >-
 
 # Tra cứu & kiểm chứng văn bản pháp luật
 
-Lawgical lập chỉ mục hơn 150.000 văn bản pháp luật Việt Nam từ các nguồn chính thức của
-nhà nước. Skill này nói về cách dùng **cho đúng**: kho dữ liệu có thể trả về kết quả
+Lawgical có hơn 150.000 văn bản pháp luật Việt Nam. Skill này nói về cách dùng **cho đúng**:
+kho dữ liệu có thể trả về kết quả
 nghe rất thuyết phục nhưng sai văn bản, thiếu nội dung, hoặc đã hết hiệu lực. Quy trình
 kiểm chứng ở dưới là thứ ngăn điều đó.
 
@@ -41,7 +41,7 @@ Trả phí: **không giới hạn**. Hạn mức đặt lại vào **00:00 giờ
 | `check_compliance(question)` | 1 lượt | Cùng cơ chế tìm, nhưng nhận đầu vào dạng câu hỏi. Trả về trích đoạn thô để **bạn** tự phân tích — không trả về kết luận |
 | `get_laws(tinh_trang, keyword, limit, offset)` | 1 lượt | Duyệt riêng **Luật** (do Quốc hội ban hành), không gồm Nghị định/Thông tư hướng dẫn |
 | `get_summary(query)` | 1 lượt | Mục lục (Chương/Mục/Điều). **Dùng trước `get_document` với luật dài** để tìm đúng Điều mà không phải tải 60.000 ký tự |
-| `get_document(query)` | 1 lượt | Toàn văn theo tên, doc id, hoặc số ký hiệu (ví dụ `"20/2023/QH15"`). **Tự tải lại từ nguồn gốc** khi bản trong kho bị thiếu hoặc chỉ có metadata — xem phần cuối |
+| `get_document(query)` | 1 lượt | Toàn văn theo **số ký hiệu** (ví dụ `"20/2023/QH15"`) hoặc **tên đầy đủ có dấu** (ví dụ `"Luật Công chứng"`) — xem "Tra một văn bản cụ thể". **Tự cập nhật văn bản** khi bản trong kho bị thiếu hoặc chỉ có metadata — xem phần cuối |
 
 **Tìm không ra thì không bị tính lượt.** Chỉ những lần thực sự trả về nội dung (HIT hoặc
 PARTIAL) mới tính; lần gọi bị lỗi cũng miễn phí. Vì vậy **cứ thử tra cứu khi chưa chắc** —
@@ -69,6 +69,28 @@ Vài thói quen tiết kiệm:
 7. **Trích dẫn chính xác**: Điều / Khoản / Điểm, kèm số ký hiệu và Tình trạng hiệu lực.
    Không bao giờ diễn giải một nghĩa vụ pháp lý mà không chỉ ra điều luật.
 
+## Tra một văn bản cụ thể
+
+`get_document` và `get_summary` tra **chính xác**: theo số ký hiệu hoặc theo tên đầy đủ
+thì trả về đúng văn bản đó, hoặc báo **Không tìm thấy** — không đoán một văn bản khác.
+
+- **Mỗi lần tra chỉ dùng một định danh.** Hoặc số ký hiệu (`"46/2024/QH15"`), hoặc tên
+  đầy đủ (`"Luật Công chứng"`, `"Bộ luật Dân sự"`). **Không ghép hai thứ** —
+  `"46/2024/QH15 Luật Công chứng"` không khớp chính xác cái nào.
+- **Tên phải đầy đủ và có dấu**, kèm loại văn bản: `"Luật Công chứng"`, không phải
+  `"luat cong chung"` hay chỉ `"công chứng"`. Tên không dấu sẽ nhận về "Không tìm thấy …
+  gõ có dấu" — gõ lại có dấu là được. Có nhiều luật cùng tên (Luật Đất đai 2003, 2013,
+  2024) thì kết quả là bản **còn hiệu lực, mới nhất**; muốn bản cũ, tra theo số ký hiệu.
+- **Một số ký hiệu có thể là của nhiều văn bản** (84 tỉnh cùng có `01/2024/QĐ-UBND`; một
+  Nghị quyết trùng số với một Luật). Khi đó kết quả mở đầu bằng **"Lưu ý về số hiệu"**,
+  liệt kê các văn bản khác cùng số. Muốn đọc văn bản khác, tra số **kèm loại, cơ quan ban
+  hành hoặc ngày** — ví dụ `"Nghị quyết 91/2015/QH13"`, `"43/CT-UB ngày 01/08/1977"`.
+- **Số văn bản hợp nhất được đánh lại mỗi năm** (`34/VBHN-BCT` năm 2020 và năm 2026 là hai
+  văn bản khác nhau). Tra số không kèm năm sẽ ra bản mới nhất, kèm danh sách các năm khác;
+  muốn bản của năm khác thì tra `"34/VBHN-BCT 2020"`.
+- **Văn bản dự thảo** có Tình trạng hiệu lực bắt đầu bằng **"DỰ THẢO … CHƯA phải văn bản
+  chính thức"**. Không bao giờ trích dẫn dự thảo như luật đang áp dụng.
+
 ## Quy trình kiểm chứng — bắt buộc trước khi trích dẫn
 
 Kho dữ liệu này sai theo bốn kiểu khác nhau. Mỗi bước dưới đây chỉ mất vài giây và không
@@ -76,10 +98,11 @@ tốn thêm lượt nào (chỉ đọc lại thứ đã có). **Làm cả bốn.
 "trông đúng rồi" — trông đúng chính là kiểu lỗi ở đây.**
 
 **1. Đúng văn bản — có phải văn bản tôi yêu cầu?**
-`get_document` đôi khi trả về một văn bản **không liên quan** thay vì báo không tìm thấy.
-Hãy đọc dòng `Số ký hiệu` trong bảng thông tin và xác nhận nó khớp với thứ đã yêu cầu.
-Chỉ riêng bước này là khác biệt giữa một câu trả lời đúng và một câu trả lời sai nhưng
-được trích dẫn đầy tự tin.
+Tra theo số hoặc tên đầy đủ giờ trả về đúng văn bản hoặc "Không tìm thấy". Nhưng **một số
+ký hiệu không đủ để xác định văn bản**: hãy đọc cả `Số ký hiệu` **và** `Cơ quan ban hành`
+trong bảng thông tin, và nếu kết quả có **"Lưu ý về số hiệu"** thì xem văn bản trả về có
+đúng là văn bản người dùng hỏi không (đúng loại, đúng cơ quan, đúng năm). Kết quả của
+`search_legal_docs` thì không đảm bảo gì — luôn đọc tiêu đề trước khi chọn.
 
 **2. Đủ nội dung — đã có toàn văn chưa?**
 Hai kiểu lỗi: chỉ có metadata (đúng bảng thông tin, vài trăm ký tự, không có điều nào), và
@@ -88,9 +111,9 @@ chỗ — phần ký của Quốc hội (`Luật này được Quốc hội … 
 CHỦ TỊCH QUỐC HỘI). Nếu dãy Điều bị nhảy số, hoặc kết thúc giữa câu, **đừng trích dẫn**.
 
 Lưu ý về khả năng tự chữa: nếu bản trong kho **rỗng hoặc chỉ có metadata**, gọi
-`get_document` **theo số ký hiệu** sẽ khiến server tự tải lại bản đầy đủ từ nguồn gốc rồi mới
+`get_document` **theo số ký hiệu** sẽ khiến server tự cập nhật bản đầy đủ rồi mới
 trả lời — nên trường hợp này thường tự khỏi ở lần gọi tiếp theo. Nhưng nếu văn bản **có nội
-dung đáng kể mà vẫn thiếu điều ở giữa**, cơ chế tự tải lại **không** kích hoạt: hãy nói rõ
+dung đáng kể mà vẫn thiếu điều ở giữa**, cơ chế tự cập nhật **không** kích hoạt: hãy nói rõ
 với người dùng là bản trong kho không đầy đủ, trích dẫn phần đã kiểm chứng được và đừng suy
 diễn phần thiếu.
 
@@ -146,6 +169,8 @@ Luật, thì bạn đang đọc phần dẫn chiếu, không phải luật.
 | "Tình trạng ghi Còn hiệu lực, vậy đây là bản hiện hành" | Có thể đã có bản hợp nhất thay thế. Tìm `VBHN`. |
 | "Nội dung trông đủ mà, dài thế còn gì" | Kiểm tra tính liên tục của Điều và phần ký cuối văn bản. |
 | "Tôi tóm tắt nghĩa vụ này theo hiểu biết chung" | Phải trích nguyên văn Điều. Luật Việt Nam thay đổi nhanh, kho dữ liệu là nguồn đúng. |
+| "Kết quả có 'Lưu ý về số hiệu', nhưng chắc là đúng rồi" | Đọc danh sách: có thể bạn cần văn bản khác cùng số. Tra lại kèm loại/cơ quan/ngày. |
+| "Tình trạng ghi DỰ THẢO, nhưng nội dung đầy đủ" | Dự thảo không phải luật. Tìm văn bản chính thức hoặc nói rõ là chưa ban hành. |
 
 ## Khi văn bản thiếu hoặc chỉ có metadata
 
@@ -154,8 +179,7 @@ ban hành …) mà không có điều nào, hoặc không tìm thấy gì.
 
 1. **Gọi `get_document` với đúng số ký hiệu** (không phải tên). Đây là bước quan trọng
    nhất: khi truy vấn có dạng số ký hiệu và bản trong kho bị thiếu hoặc rỗng, server **tự
-   tải lại văn bản từ nguồn gốc rồi lập chỉ mục trước khi trả lời**. Thường mất vài
-   giây, nhưng có thể lâu hơn nếu nguồn phản hồi chậm.
+   cập nhật văn bản trước khi trả lời**. Thường mất vài giây, đôi khi lâu hơn.
    Cơ chế này **chỉ chạy khi truy vấn trông giống số ký hiệu** — tra bằng từ khóa chung
    chung sẽ không kích hoạt nó, vì một kết quả tìm kiếm mờ không đủ tin cậy để nhận là
    đúng văn bản.
