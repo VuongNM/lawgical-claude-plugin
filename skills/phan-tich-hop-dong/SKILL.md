@@ -32,7 +32,7 @@ Dùng khi người dùng đưa vào một hợp đồng có sẵn (dán văn b�
    - 🟡 Bất lợi cho bên yêu cầu phân tích nhưng không trái luật
    - 🟢 Phù hợp, không có rủi ro rõ ràng
 
-5. **Tổng hợp thành bảng:** Điều khoản | Rủi ro | Trích dẫn luật | Đề xuất chỉnh sửa. Nếu người dùng yêu cầu, xuất ra Word, Google Docs, hoặc Google Slides để trình bày.
+5. **Tổng hợp thành bảng:** Điều khoản | Rủi ro | Trích dẫn luật | Đề xuất chỉnh sửa. Cột "Đề xuất chỉnh sửa" viết lại bằng văn phong pháp lý trang trọng, giữ đúng cách đánh số Điều — Khoản của hợp đồng gốc (không đổi sang văn phong thường ngày). Nếu người dùng yêu cầu, xuất ra Word, Google Docs, hoặc Google Slides để trình bày.
 
 ## Lưu ý
 
